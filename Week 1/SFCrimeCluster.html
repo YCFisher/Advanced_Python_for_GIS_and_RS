@@ -1,0 +1,50 @@
+<html>
+<head>
+  <title>cluster try 3</title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css"/>
+  <link rel="stylesheet" href="MarkerCluster.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+  <script src="leaflet.markercluster.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+   
+  <style>
+    #map{ height: 100% }
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <script>
+  
+  var map = L.map('map').setView([37.7435784, -122.4909161], 12);
+  
+  L.tileLayer('http://a.tile.stamen.com/watercolor/{z}/{x}/{y}.png',
+    {
+      attribution: 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
+      maxZoom: 17,
+      minZoom: 9
+    }).addTo(map);
+ 
+  $.getJSON("https://raw.githubusercontent.com/gbrunner/Advanced_Python_for_GIS_and_RS/master/Week%201/sf_crime.geojson",function(data){
+    var crimeIcon = L.icon({
+    iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Crime.svg/1181px-Crime.svg.png',
+    iconSize: [25,25]
+  }); 
+    var crime = L.geoJson(data  ,{
+    pointToLayer: function(feature,latlng){
+	  var marker = L.marker(latlng,{icon: crimeIcon}) ;
+      return marker;
+    }
+    }); 
+  
+    
+    var clusters = L.markerClusterGroup();
+    clusters.addLayer(crime);
+    map.addLayer(clusters);
+    }); 
+    
+     
+  </script>
+</body>
+</html>
