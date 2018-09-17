@@ -6,4 +6,4 @@ Assignment 2
 
 2.2: https://ycfisher.github.io/Advanced_Python_for_GIS_and_RS/Week 2/Assignment2_STLCrime.html
 
-2.3 Optional: https://ycfisher.github.io/Advanced_Python_for_GIS_and_RS/Week2/Assignment2_STLCrimeHeatmap.html
+2.3 Optional: https://ycfisher.github.io/Advanced_Python_for_GIS_and_RS/Week%202/Assignment2_STLMOCrimeHeatmap.html
