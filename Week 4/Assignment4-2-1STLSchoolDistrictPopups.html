@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Assignment 4.2-1 Saint Louis, MO School District Popups</title>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.8/"></script>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/layers/FeatureLayer",
+      "esri/views/MapView",
+      "dojo/domReady!"
+    ], function(
+      Map,
+      FeatureLayer,
+      MapView
+    ) {
+     
+      var map = new Map({
+        basemap: "gray"
+      });
+      
+      var view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center:[-90.1994, 38.6270],
+        zoom: 11
+      });
+     
+      var template = { 
+        title: "School District: {ESN}",
+        content: [{
+          
+          type: "fields",
+          fieldInfos: [{
+            fieldName: "MUNICIPALITY",
+            label: "Municipality: ",
+            visible: true
+          }, {
+             fieldName: "POLICE",
+            label: "Police Department: ",
+            visible: true,
+            format: {
+              digitSeparator: true,
+              places: 0
+            }
+          }, {
+            fieldName: "FIRE",
+            label: "Fire Department: ",
+            visible: true,
+            format: {
+              digitSeparator: true,
+              places: 0
+            }
+          }, {
+            fieldName: "last_edited_date",
+            label: "Last Date Edited: ",
+            visible: true,
+            format: {
+              value: true,
+            }
+          }]
+        }]
+      };
+      var renderer = {
+      type: "simple",  
+      symbol: {
+        type: "simple-marker",  
+        size: 6,
+        color: "black",
+        outline: {  
+          width: 0.5,
+          color: "white"
+        }
+      }
+    };
+      
+      var featureLayer = new FeatureLayer({
+        url: "http://maps.stlouisco.com/arcgis/rest/services/OpenData/OpenData/FeatureServer/3",
+        outFields: ["*"],
+        popupTemplate: template
+      });
+      map.add(featureLayer);
+      
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
