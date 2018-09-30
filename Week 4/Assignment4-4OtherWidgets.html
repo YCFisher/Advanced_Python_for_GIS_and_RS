@@ -26,8 +26,9 @@
       "esri/widgets/Home",
       "esri/widgets/CoordinateConversion",
       "esri/widgets/Locate",
+      "esri/widgets/Search",
       "dojo/domReady!"
-    ], function(WebScene, SceneView, Camera, Home, CoordinateConversion, Locate) {
+    ], function(WebScene, SceneView, Camera, Home, CoordinateConversion, Locate, Search) {
     
      
       var scene = new WebScene({
@@ -114,7 +115,7 @@
         view: view
       });
 
-      view.ui.add(ccWidget, "bottom-left");
+      view.ui.add(ccWidget, "top-right");
     
     var locateBtn = new Locate({
         view: view
@@ -123,6 +124,14 @@
       view.ui.add(locateBtn, {
         position: "top-left"
       }); 
+    
+    var searchWidget = new Search({
+        view: view
+      });
+
+      view.ui.add(searchWidget, {
+        position: "top-right"
+      });  
       
     }); 
   </script>
