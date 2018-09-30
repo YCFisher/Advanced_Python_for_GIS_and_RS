@@ -77,19 +77,7 @@
           }]
         }]
       };
-      var renderer = {
-      type: "simple",  
-      symbol: {
-        type: "simple-marker",  
-        size: 6,
-        color: "black",
-        outline: {  
-          width: 0.5,
-          color: "white"
-        }
-      }
-    };
-      
+     
       var featureLayer = new FeatureLayer({
         url: "http://maps.stlouisco.com/arcgis/rest/services/OpenData/OpenData/FeatureServer/3",
         outFields: ["*"],
