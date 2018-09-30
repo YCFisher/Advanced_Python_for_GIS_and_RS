@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Assignment 4-4 World Population Saint Louis, MO 3D Other Widgets</title>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.8/"></script>
+
+ <script>
+    require([
+      "esri/WebScene",
+      "esri/views/SceneView",
+      "esri/Camera",
+      "esri/widgets/Home",
+      "esri/widgets/CoordinateConversion",
+      "esri/widgets/Expand",
+      "esri/widgets/Locate",
+      "dojo/domReady!"
+    ], function(WebScene, SceneView, Camera, Home, CoordinateConversion, Expand, Locate) {
+    
+     
+      var scene = new WebScene({
+        portalItem:{
+         id:"cdf7b9d41f1440068543cce2bb62ce7a" 
+        }
+      });
+      
+      var camera = new Camera({
+        position: [
+          -90.1994, // lon
+          38.6270, // lat
+          40000// elevation in meters
+        ],
+        tilt:0,
+        heading: 0
+      });
+   
+      var view = new SceneView({
+        container: "viewDiv",
+        map: scene,
+        camera: camera
+    });
+    
+    [v1, v2, v3].forEach(function(button) {
+      button.style.display = 'flex';
+      view.ui.add(button, 'top-right');
+    });
+	
+    var camera2 = new Camera({
+	        position: {
+          x: -90.1930,
+          y: 38.6242,
+          z: 1500
+        },
+        tilt: 0,
+        heading: 0
+	  });
+		
+	  var camera3 = new Camera({
+	        position: {
+          x: -90.2880,
+          y: 38.6310,
+          z: 5000
+        },
+        tilt: 10,
+        heading: 10
+	  });
+	  
+	  var camera4 = camera
+	
+	 v3.addEventListener('click', function() {
+        view.goTo({
+        position: {
+          x: -90.230,
+          y: 38.635,
+          z: 3000
+        },
+        tilt: 1,
+        heading: 10
+      });
+    });
+	
+    v2.addEventListener('click', function() {
+      view.goTo({
+		target:camera3
+      });
+    });
+    
+    v1.addEventListener('click', function() {
+      view.goTo({
+        target:camera2
+      });
+    });
+    
+   
+   var homeBtn = new Home({
+       view: view
+      });
+      
+      view.ui.add(homeBtn, "top-left");
+    
+    var locateBtn = new Locate({
+        view: view
+      });
+
+      view.ui.add(locateBtn, {
+        position: "top-left"
+      }); 
+      
+    }); 
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+  <button id="v1" class="off">Busch Stadium</button>
+  <button id="v2" class="off">Forest Park</button>
+  <button id="v3" class="off">Saint Louis University</button>
+</body>
+</html>
