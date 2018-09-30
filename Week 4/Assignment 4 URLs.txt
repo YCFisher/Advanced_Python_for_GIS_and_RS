@@ -8,4 +8,4 @@ Assignment URLs
 
 4.3: https://ycfisher.github.io/Advanced_Python_for_GIS_and_RS/Week 4/Assignment4-3Boston3DWidgets.html
 
-4.4: 
+4.4: https://ycfisher.github.io/Advanced_Python_for_GIS_and_RS/Week 4/Assignment4-4OtherWidgets.html

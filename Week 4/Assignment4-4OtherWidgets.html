@@ -25,10 +25,9 @@
       "esri/Camera",
       "esri/widgets/Home",
       "esri/widgets/CoordinateConversion",
-      "esri/widgets/Expand",
       "esri/widgets/Locate",
       "dojo/domReady!"
-    ], function(WebScene, SceneView, Camera, Home, CoordinateConversion, Expand, Locate) {
+    ], function(WebScene, SceneView, Camera, Home, CoordinateConversion, Locate) {
     
      
       var scene = new WebScene({
@@ -110,6 +109,12 @@
       });
       
       view.ui.add(homeBtn, "top-left");
+    
+    var ccWidget = new CoordinateConversion({
+        view: view
+      });
+
+      view.ui.add(ccWidget, "bottom-left");
     
     var locateBtn = new Locate({
         view: view
