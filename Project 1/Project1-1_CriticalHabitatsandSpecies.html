@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Project 1- Critical Habitats</title>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.8/"></script>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/layers/FeatureLayer",
+      "esri/views/MapView",
+      "esri/widgets/Home",
+      "esri/widgets/Locate",
+      "esri/widgets/Search",
+      "dojo/domReady!"
+    ], function(
+      Map, FeatureLayer, MapView, Home, Locate, Search) {
+     
+      var map = new Map({
+        basemap: "gray"
+      });
+      
+      var view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center:[-90.1994, 38.6270],
+        zoom: 2.5
+      });
+     
+     var featurelayer1PopUp = {
+      title: "Fish and Wildlife Service Regional Boundary: #{REGION}",
+        content: [{
+          
+          type: "fields",
+          fieldInfos: [{
+            fieldName: "REGNAME",
+            label: "Region Name: ",
+            visible: true
+          }, {
+             fieldName: "SHAPEarea",
+            label: "Shape Area: ",
+            visible: true,
+            format: {
+              value: true
+              }
+          }, {
+            fieldName: "SHAPElen",
+            label: "Shape Length: ",
+            visible: true,
+            format: {
+              value: true
+            }
+          }]
+        }]
+      }; 
+     
+      var featureLayer_1 = new FeatureLayer({
+        url: "http://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/FWS_Regional_Boundaries/FeatureServer",
+        outFields: ["*"],
+        popupTemplate: featurelayer1PopUp
+      });  
+      map.add(featureLayer_1);
+      
+     var featurelayer2PopUp = {
+      title: "Critical Habitat: {comname}",
+        content: [{
+          
+          type: "fields",
+          fieldInfos: [{
+            fieldName: "sciname",
+            label: "Scientific Name: ",
+            visible: true
+          }, {
+            fieldName: "speciestype",
+            label: "Species Type: ",
+            visible: true,
+          }, {
+            fieldName: "status",
+            label: "Critical Habitat Status: ",
+            visible: true,
+          }, {
+            fieldName: "listingstatus",
+            label: "Listing Status: ",
+            visible: true
+          }]
+        }]
+      };  
+      
+      var featureLayer_2 = new FeatureLayer({
+          url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/CriticalHabitat/FeatureServer",
+        outFields: ["*"],
+        popupTemplate: featurelayer2PopUp  
+      });
+      map.add(featureLayer_2);
+      
+      var featurelayer3PopUp = {
+      title: "Fish and Wildlife HQ Services: {ORGNAME}",
+        content: [{
+          
+          type: "fields",
+          fieldInfos: [{
+            fieldName: "BldgType",
+            label: "Building Type: ",
+            visible: true
+          }, {
+             fieldName: "CITY",
+            label: "City: ",
+            visible: true,
+          }, {
+            fieldName: "STATE",
+            label: "State: ",
+            visible: true,
+          }]
+        }]
+      }; 
+      
+      var featureLayer_3 = new FeatureLayer({
+          url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/ArcGIS/rest/services/FWS_HQ_Visitor_Services/FeatureServer/0",
+        outFields: ["*"],
+        popupTemplate: featurelayer3PopUp
+      });
+      map.add(featureLayer_3);
+      
+      var featurelayer4PopUp = {
+      title: "Threatened Species Count in {Country}",
+        content: [{
+          
+          type: "fields",
+          fieldInfos: [{
+            fieldName: "Mammals",
+            label: "Mammals: ",
+            visible: true
+          }, {
+             fieldName: "Birds",
+            label: "Birds: ",
+            visible: true,
+          }, {
+            fieldName: "Fishes",
+            label: "Fish: ",
+            visible: true,
+          }, {
+            fieldName: "Plants",
+            label: "Plants: ",
+            visible: true,  
+          }]
+        }]
+      };
+      
+      var featureLayer_4 = new FeatureLayer({
+          url: "http://services7.arcgis.com/orWtp3qBvuhUQKlH/arcgis/rest/services/threatened_species_features/FeatureServer/1",
+        outFields: ["*"],
+        popupTemplate: featurelayer4PopUp
+      });
+      map.add(featureLayer_4);
+      
+      var homeBtn = new Home({
+       view: view
+      });
+      
+      view.ui.add(homeBtn, "top-left");
+    
+    var locateBtn = new Locate({
+        view: view
+      });
+      view.ui.add(locateBtn, {
+        position: "top-right"
+      }); 
+    
+    var searchWidget = new Search({
+        view: view
+      });
+      view.ui.add(searchWidget, {
+        position: "bottom-right"
+      });
+      
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
