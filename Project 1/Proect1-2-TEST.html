@@ -1,0 +1,101 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+   crossorigin=""/>
+  
+<style>
+    #mapid{ height: 100% }
+</style>
+
+ <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+   integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+   crossorigin=""></script>
+  
+</head>
+<body>
+  
+  
+<div id="mapid"></div>
+  <script>
+  var mymap = L.map('mapid').setView([38.63658, -90.23338], 2
+                                    );
+    L.tileLayer('http://a.tile.stamen.com/toner/{z}/{x}/{y}.png', {
+        attribution: 'Map tiles by Stamen Design, under CC BY 3.0.',
+        id: 'mapbox.streets'
+    }).addTo(mymap);
+
+    
+  var circle1 = L.circle([38.6112466, -90.2761725], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+  }).addTo(mymap);
+  
+  var circle12 = L.circle([38.6112466, -90.2761725], {
+    color: '#f03',
+    fillColor: '#f03',
+    fillOpacity: 1.0,
+    radius: 10
+  }).addTo(mymap);  
+    
+    var marker = L.marker([38.63658, -90.23338]).addTo(mymap);
+    
+    var polygon = L.polygon([
+    [38.63658, -90.23338],
+    [38.63658, -91],
+    [50, -91]
+    ],
+  {color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+     }).addTo(mymap);
+        
+  polygon.bindPopup("<b>#1 Restaurant</b><br>Favazza's").openPopup();
+    
+    var polygon2 = L.polygon([
+        [59.88893689676585, -140.80078125], 
+        [69.65708627301174, -141.15234374999997],
+        [71.24435551310674, -156.26953125],
+        [68.9110048456202, -166.2890625],
+        [66.37275500247455, -161.54296875],
+        [66.65297740055279, -164.1796875],
+        [65.6582745198266, -168.22265625],
+        [64.16810689799152, -166.81640625],
+        [64.54844014422517, -161.3671875],
+        [62.99515845212052, -163.65234374999997],
+        [60.58696734225869, -166.81640625],
+        [58.44773280389084, -158.90625],
+        [57.231502991478926, -158.55468749999997],
+        [51.83577752045248, -178.06640625],
+        [55.97379820507658, -157.85156249999997],
+        [57.98480801923985, -150.99609375],
+        [59.5343180010956, -149.23828125],
+        [59.88893689676585, -140.80078125]],
+      {color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+      }).addTo(map);
+   
+   L.geoJSON(geojsonFeature).addTo(map);
+    
+    var geojsonFeature = {
+    "type": "Feature",
+    "properties": {
+        "name": "Coors Field",
+        "amenity": "Baseball Stadium",
+        "popupContent": "This is where the Rockies play!"
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-104.99404, 39.75621]
+    }
+};
+    
+    
+    
+     
+  </script>
+</body>
+</html>

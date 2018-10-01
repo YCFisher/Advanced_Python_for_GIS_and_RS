@@ -1,0 +1,117 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+   crossorigin=""/>
+  
+<style>
+    #mapid{ height: 100% }
+</style>
+
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+   integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+   crossorigin=""></script>
+
+
+  
+</head>
+<body>
+  
+  
+<div id="mapid"></div>
+  <script>
+  var mymap = L.map('mapid').setView([38.63658, -90.23338], 11
+                                    );
+    L.tileLayer('http://a.tile.stamen.com/toner/{z}/{x}/{y}.png', {
+        attribution: 'Map tiles by Stamen Design, under CC BY 3.0.',
+        maxZoom: 18,
+        id: 'mapbox.streets'
+    }).addTo(mymap);
+
+    
+  var circle1 = L.circle([38.6112466, -90.2761725], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+  }).addTo(mymap);
+  
+  var circle12 = L.circle([38.6112466, -90.2761725], {
+    color: '#f03',
+    fillColor: '#f03',
+    fillOpacity: 1.0,
+    radius: 10
+  }).addTo(mymap);  
+        
+  circle12.bindPopup("<b>#1 Restaurant</b><br>Favazza's").openPopup();
+    
+    var circle2 = L.circle([38.6345329, -90.3878659], {
+    color: 'blue',
+    fillColor: '#1E90FF',
+    fillOpacity: 0.5,
+    radius: 500
+  }).addTo(mymap);
+   
+   var circle21 = L.circle([38.6345329, -90.3878659], {
+    color: '#00008B',
+    fillColor: '#00008B',
+    fillOpacity: 1.0,
+    radius: 10
+  }).addTo(mymap); 
+        
+  circle21.bindPopup("<b>#2 Restaurant</b><br>Sushi Ai").openPopup();
+    
+    var circle3 = L.circle([38.6180411, -90.3345132], {
+    color: 'yellow',
+    fillColor: '#FFFF00',
+    fillOpacity: 0.5,
+    radius: 500
+  }).addTo(mymap);
+    
+var circle31 = L.circle([38.6180411, -90.3345132], {
+    color: '#FFA500',
+    fillColor: '#FFA500',
+    fillOpacity: 1.0,
+    radius: 10
+  }).addTo(mymap);
+        
+  circle31.bindPopup("<b>#3 Restaurant</b><br>Salt + Smoke").openPopup();
+    
+    
+    var circle4 = L.circle([38.6500327, -90.262674], {
+    color: 'green',
+    fillColor: '#2E8B57',
+    fillOpacity: 0.5,
+    radius: 500
+  }).addTo(mymap);
+    
+     var circle41 = L.circle([38.6500327, -90.262674], {
+    color: '#006400',
+    fillColor: '#006400',
+    fillOpacity: 1.0,
+    radius: 10
+  }).addTo(mymap);
+   
+  circle41.bindPopup("<b>#4 Restaurant</b><br>Evangeline's Bistro and Music House").openPopup();
+    
+    var circle5 = L.circle([38.6231073, -90.2800455], {
+    color: 'purple',
+    fillColor: '#800080',
+    fillOpacity: 0.5,
+    radius: 500
+  }).addTo(mymap);
+    
+   var circle51 = L.circle([38.6231073, -90.2800455], {
+    color: '#800080',
+    fillColor: '#800080',
+    fillOpacity: 1.0,
+    radius: 10
+  }).addTo(mymap);
+        
+  circle51.bindPopup("<b>#5 Restaurant</b><br>LoRusso's Cucina").openPopup();
+    
+     
+  </script>
+</body>
+</html>
